@@ -106,7 +106,7 @@
 
         // Function to fetch and display messages
         function fetchMessages() {
-            fetch('http://127.0.0.1:5000/messages')
+            fetch('https://chatapp3131-tejus3131.vercel.app/messages')
                 .then(response => response.json())
                 .then(data => {
                     chatMessages.innerHTML = '';
@@ -129,7 +129,7 @@
             const sender = document.getElementById('sender-input').value.trim();
 
             if (content !== '' && sender !== '') {
-                fetch('http://127.0.0.1:5000/messages', {
+                fetch('https://chatapp3131-tejus3131.vercel.app/messages', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
