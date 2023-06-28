@@ -2,162 +2,20 @@
 <html>
 <head>
     <title>Chat Application</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f2f2f2;
-        }
-
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: #333333;
-            color: #ffffff;
-            border-radius: 4px 4px 0 0;
-        }
-
-        .header h1 {
-            margin: 0;
-        }
-
-        .header input[type="text"] {
-            padding: 5px;
-            border: none;
-            border-radius: 4px;
-        }
-
-        .chat-messages {
-            height: 300px;
-            overflow-y: scroll;
-            padding: 20px;
-        }
-
-        .message {
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #f2f2f2;
-            border-radius: 4px;
-        }
-
-        .message .sender {
-            font-weight: bold;
-            color: #333333;
-        }
-
-        .message .content {
-            margin-top: 5px;
-            color: #666666;
-        }
-
-        .input-container {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            background-color: #f2f2f2;
-            border-radius: 0 0 4px 4px;
-        }
-
-        .input-container input[type="text"] {
-            flex-grow: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-        }
-
-        .input-container button {
-            margin-left: 10px;
-            padding: 10px 20px;
-            background-color: #333333;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Chat Application</h1>
-            <input type="text" id="sender-input" placeholder="Enter your name">
+        <h1>Anonymous Chat Application</h1>
+        <div id="chat-container">
+            <div id="chat-messages"></div>
         </div>
-        <div class="chat-messages" id="chat-messages"></div>
-        <div class="input-container">
-            <input type="text" id="message-input" placeholder="Enter your message">
-            <button onclick="sendMessage()">Send</button>
+        <div id="input-container">
+            <input type="text" id="input-message" placeholder="Type a message...">
+            <button id="btn-send">Send</button>
         </div>
     </div>
 
-    <script>
-        const chatMessages = document.getElementById('chat-messages');
-        const messageInput = document.getElementById('message-input');
-
-        // Function to fetch and display messages
-        function fetchMessages() {
-            fetch('https://chatapp3131-tejus3131.vercel.app/messages')
-                .then(response => response.json())
-                .then(data => {
-                    chatMessages.innerHTML = '';
-                    data.forEach(message => {
-                        const messageElement = document.createElement('div');
-                        messageElement.classList.add('message');
-                        messageElement.innerHTML = `
-                            <div class="sender">${message.sender}</div>
-                            <div class="content">${message.content}</div>
-                        `;
-                        chatMessages.appendChild(messageElement);
-                    });
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                });
-        }
-
-        // Function to send a message
-        function sendMessage() {
-            const content = messageInput.value;
-            const sender = document.getElementById('sender-input').value.trim();
-
-            if (content !== '' && sender !== '') {
-                fetch('https://chatapp3131-tejus3131.vercel.app/messages', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        content: content,
-                        sender: sender
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    messageInput.value = '';
-                    fetchMessages();
-                });
-            }
-        }
-
-        // Fetch messages initially and then poll every 3 seconds
-        fetchMessages();
-        setInterval(fetchMessages, 500);
-
-        const apiMessage = document.createElement('div');
-        apiMessage.classList.add('message');
-        apiMessage.innerHTML = `
-            <div class="content">This is an API server. It is not intended for GUI use.</div>
-        `;
-        chatMessages.appendChild(apiMessage);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
