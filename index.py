@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import pymongo
 
 app = Flask(__name__)
@@ -10,12 +10,12 @@ messages = db.messages
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return render_template("index.html")
 
 
 @app.route('/messages')
 def get_messages():
-    return jsonify(list(messages.find()))
+    return jsonify(list(messages.find({})))
 
 
 @app.route('/messages', methods=['POST'])
@@ -28,5 +28,4 @@ def create_message():
     return jsonify(new_msg)
 
 if __name__ == "__main__":
-
-    app.run(debug=True)
+    app.run()
