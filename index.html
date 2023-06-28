@@ -151,6 +151,13 @@
         // Fetch messages initially and then poll every 3 seconds
         fetchMessages();
         setInterval(fetchMessages, 500);
+
+        const apiMessage = document.createElement('div');
+        apiMessage.classList.add('message');
+        apiMessage.innerHTML = `
+            <div class="content">This is an API server. It is not intended for GUI use.</div>
+        `;
+        chatMessages.appendChild(apiMessage);
     </script>
 </body>
 </html>

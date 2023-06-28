@@ -6,6 +6,10 @@ CORS(app)
 
 messages = []
 
+@app.route('/')
+def index():
+    return 'This is an API server. It is not intended for GUI use.'
+
 @app.route('/messages', methods=['GET'])
 def get_messages():
     return jsonify(messages)
