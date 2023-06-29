@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QTextBrowser, QL
 class ChatWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Chat Application")
+        self.setWindowTitle("Anonymous Chat Application")
         self.resize(400, 500)
 
         self.chat_display = QTextBrowser()
