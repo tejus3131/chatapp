@@ -19,13 +19,12 @@ function fetchMessages() {
 
 function sendMessage() {
     const content = inputMessage.value.trim();
-    const sender = 'User';
 
     if (content === '') {
         return;
     }
 
-    const message = { content, sender };
+    const message = { content };
 
     fetch('https://chatapp3131-tejus3131.vercel.app/messages', {
         method: 'POST',

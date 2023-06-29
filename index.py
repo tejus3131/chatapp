@@ -32,9 +32,8 @@ def get_messages():
 @app.route('/messages', methods=['POST'])
 def create_message():
     content = request.json['content']
-    sender = request.json['sender']
 
-    message = {'content': content, 'sender': sender}
+    message = {'content': content}
     db.messages.insert_one(message)
 
     # Convert ObjectId to string for JSON serialization
