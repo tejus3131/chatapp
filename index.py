@@ -15,7 +15,7 @@ db = client['chatdb']  # MongoDB database instance
 
 @app.route('/')
 def index():
-    return "This is an API server. It is not intended for GUI use."
+    return 'This is an API server. It is not intended for GUI use. <a href="/clear">Clear Messaages</a>'
 
 
 @app.route('/messages', methods=['GET'])
